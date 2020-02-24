@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Gestionnaire_Clients"
+        DataContext="{Binding RelativeSource={RelativeSource self}}"
         mc:Ignorable="d"
         Title="Gestion de clients" Height="450" Width="800">
     <DockPanel LastChildFill="True">
@@ -21,7 +22,9 @@
         <StatusBar DockPanel.Dock="Bottom" Height="25">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Client sélectionné: " />
-                <TextBlock Text=""/> <!-- * -->
+                <TextBlock Text="{Binding CurrentCustomer.LastName}"/>
+                <TextBlock Text=", "/>
+                <TextBlock Text="{Binding CurrentCustomer.Name}"/>
             </StackPanel>
         </StatusBar>
 
@@ -40,10 +43,14 @@
                 </StackPanel>
                 
                 <Border BorderThickness="1" BorderBrush="Gray">
-                    <ListView x:Name="productsListView" ItemsSource="{Binding products}">
+                    <ListView x:Name="customersListView" ItemsSource="{Binding customers}" SelectionChanged="customersListView_SelectionChanged">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding ShortDescription}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding LastName}"/>
+                                    <TextBlock Text=", "/>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
@@ -71,37 +78,35 @@
 
                 <!-- Row 0 -->
                 <TextBlock  Grid.Row="0" Grid.Column="0" Margin="2" Text="Prénom: "/>
-                <TextBox Grid.Row="0" Grid.Column="1" Margin="2" />
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="2" Text="{Binding CurrentCustomer.LastName}"/>
 
                 <TextBlock Grid.Row="0" Grid.Column="2" Margin="2" Text="Nom: "/>
-                <TextBox Grid.Row="0" Grid.Column="3" Margin="2" />
+                <TextBox Grid.Row="0" Grid.Column="3" Margin="2" Text="{Binding CurrentCustomer.Name}"/>
 
                 <!-- Row 1 -->
                 <TextBlock Grid.Row="1" Grid.Column="0" Margin="2" Text="Adresse: "/>
-                <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="2"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="2" Text="{Binding CurrentCustomer.Address}"/>
                 
                 <!-- Row 2 -->
                 <TextBlock  Grid.Row="2" Grid.Column="0" Margin="2" Text="Ville: "/>
-                <TextBox Grid.Row="2" Grid.Column="1" Margin="2" />
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding CurrentCustomer.City}"/>
 
                 <TextBlock Grid.Row="2" Grid.Column="2" Margin="2" Text="Province: "/>
-                <TextBox  Grid.Row="2" Grid.Column="3" Margin="2" />
-
+                <TextBox  Grid.Row="2" Grid.Column="3" Margin="2" Text="{Binding CurrentCustomer.Province}"/>
 
                 <!-- Row 3 -->
                 <TextBlock Grid.Row="3" Grid.Column="0" Margin="2" Text="Code Postal: "/>
-                <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="2"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="2" Text="{Binding CurrentCustomer.PostalCode}"/>
 
                 <!-- Row 4 -->
                 <TextBlock Grid.Row="4" Grid.Column="0" Margin="2" Text="Contact: "/>
-                <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="2" />
+                <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="2" Text="{Binding CurrentCustomer.ContactInfo}"/>
                 
                 <!-- Row 5 -->
                 <Button Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Margin="2" Content="Supprimer client" />
                 
                 <!-- Row 6 -->
-                <Image Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Margin="5" />
-
+                <Image Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Margin="5" Height="200" Source="{Binding CurrentCustomer.PicturePath}"/>
             </Grid>
         </Grid>
     </DockPanel>
