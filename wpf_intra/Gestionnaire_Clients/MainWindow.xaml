@@ -16,7 +16,7 @@
                     <MenuItem Header="Sauvegarder"/>
                     <MenuItem Header="Fermer"/>
                     <Separator/>
-                    <MenuItem Header="Nouveau client"/>
+                    <MenuItem Header="Nouveau client" Click="add_New_Customer"/>
                     <Separator/>
                     <MenuItem Header="Quitter"/>
                 </MenuItem>
@@ -46,7 +46,7 @@
             <DockPanel Grid.Column="0">
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                     <TextBlock Text="Liste des clients" Padding="3"/>
-                    <Button Content="Nouveau client"></Button>
+                    <Button Content="Nouveau client" Click="add_New_Customer" ></Button>
                 </StackPanel>
                 
                 <Border BorderThickness="1" BorderBrush="Gray">
@@ -110,7 +110,7 @@
                 <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="2" Text="{Binding CurrentCustomer.ContactInfo}"/>
                 
                 <!-- Row 5 -->
-                <Button Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Margin="2" Content="Supprimer client" />
+                <Button Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Margin="2" Content="Supprimer client" Click="delete_customer"/>
                 
                 <!-- Row 6 -->
                 <Image Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Margin="5" Height="200" Source="{Binding CurrentCustomer.PicturePath}"/>

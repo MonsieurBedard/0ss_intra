@@ -81,5 +81,28 @@ namespace Gestionnaire_Clients
             lv.ItemsSource = customers;
             Debug.WriteLine(newIndex);
         }
+
+        private void add_New_Customer(object sender, RoutedEventArgs e)
+        {
+            customers.Add(
+                new Customer() { Name = "Name", LastName = "Last name", Address = "Address", City = "City", Province = "Province", PostalCode = "Postal code", PicturePath = "images/user.png", ContactInfo = "Contact info" }
+            );
+
+            customersListView.SelectedIndex = customers.Count() - 1;
+        }
+
+        private void delete_customer(object sender, RoutedEventArgs e)
+        {
+            int index = customersListView.SelectedIndex;
+            if (index != 0)
+            {
+                customersListView.SelectedIndex = index - 1;
+            } else
+            {
+                customersListView.SelectedIndex = 1;
+            }
+
+            customers.RemoveAt(index);
+        }
     }
 }
