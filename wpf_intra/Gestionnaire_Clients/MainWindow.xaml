@@ -6,7 +6,103 @@
         xmlns:local="clr-namespace:Gestionnaire_Clients"
         mc:Ignorable="d"
         Title="Gestion de clients" Height="450" Width="800">
-    <Grid>
+    <DockPanel LastChildFill="True">
+        <!-- Top menu -->
+        <StackPanel DockPanel.Dock="Top">
+            <Menu>
+                <MenuItem Header="Fichier">
+                </MenuItem>
+                <MenuItem Header="Édition" />
+                <MenuItem Header="Affichage"/>
+            </Menu>
+        </StackPanel>
+        
+        <!-- Bottom pannel -->
+        <StatusBar DockPanel.Dock="Bottom" Height="25">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Client sélectionné: " />
+                <TextBlock Text=""/> <!-- * -->
+            </StackPanel>
+        </StatusBar>
 
-    </Grid>
+        <!-- Main Grid -->
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!-- Client list -->
+            <DockPanel Grid.Column="0">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                    <TextBlock Text="Liste des clients" Padding="3"/>
+                    <Button Content="Nouveau client"></Button>
+                </StackPanel>
+                
+                <Border BorderThickness="1" BorderBrush="Gray">
+                    <ListView x:Name="productsListView" ItemsSource="{Binding products}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ShortDescription}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Border>
+            </DockPanel>
+
+            <!-- Item infos -->
+            <Grid Grid.Column="1" Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <!-- Spaghetti -->
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Row 0 -->
+                <TextBlock  Grid.Row="0" Grid.Column="0" Margin="2" Text="Prénom: "/>
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="2" />
+
+                <TextBlock Grid.Row="0" Grid.Column="2" Margin="2" Text="Nom: "/>
+                <TextBox Grid.Row="0" Grid.Column="3" Margin="2" />
+
+                <!-- Row 1 -->
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="2" Text="Adresse: "/>
+                <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="2"/>
+                
+                <!-- Row 2 -->
+                <TextBlock  Grid.Row="2" Grid.Column="0" Margin="2" Text="Ville: "/>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="2" />
+
+                <TextBlock Grid.Row="2" Grid.Column="2" Margin="2" Text="Province: "/>
+                <TextBox  Grid.Row="2" Grid.Column="3" Margin="2" />
+
+
+                <!-- Row 3 -->
+                <TextBlock Grid.Row="3" Grid.Column="0" Margin="2" Text="Code Postal: "/>
+                <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="2"/>
+
+                <!-- Row 4 -->
+                <TextBlock Grid.Row="4" Grid.Column="0" Margin="2" Text="Contact: "/>
+                <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="2" />
+                
+                <!-- Row 5 -->
+                <Button Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Margin="2" Content="Supprimer client" />
+                
+                <!-- Row 6 -->
+                <Image Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Margin="5" />
+
+            </Grid>
+        </Grid>
+    </DockPanel>
 </Window>
