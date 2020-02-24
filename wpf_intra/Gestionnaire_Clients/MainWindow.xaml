@@ -12,6 +12,13 @@
         <StackPanel DockPanel.Dock="Top">
             <Menu>
                 <MenuItem Header="Fichier">
+                    <MenuItem Header="Ouvrir..."/>
+                    <MenuItem Header="Sauvegarder"/>
+                    <MenuItem Header="Fermer"/>
+                    <Separator/>
+                    <MenuItem Header="Nouveau client"/>
+                    <Separator/>
+                    <MenuItem Header="Quitter"/>
                 </MenuItem>
                 <MenuItem Header="Édition" />
                 <MenuItem Header="Affichage"/>
